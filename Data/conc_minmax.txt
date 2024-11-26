@@ -1,5 +1,0 @@
-Tempo: 0.000106; Comprimento: 10; Threads: 2
-Tempo: 0.000077; Comprimento: 100; Threads: 2
-Tempo: 0.000208; Comprimento: 1000; Threads: 2
-Tempo: 0.010503; Comprimento: 10000; Threads: 2
-Tempo: 1.002426; Comprimento: 100000; Threads: 2

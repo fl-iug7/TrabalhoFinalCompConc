@@ -1,5 +1,0 @@
-Tempo: 0.000000; Comprimento: 10
-Tempo: 0.000007; Comprimento: 100
-Tempo: 0.000436; Comprimento: 1000
-Tempo: 0.039714; Comprimento: 10000
-Tempo: 3.921394; Comprimento: 100000
