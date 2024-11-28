@@ -33,7 +33,7 @@ void garantirDiretorioEArquivo() {
             exit(1);
         }
         // Adicionar a linha de cabeçalho
-        fprintf(arquivoLog, "Programa, Tempo, Comprimento, Threads\n");
+        fprintf(arquivoLog, "Programa,Tempo,Comprimento,Threads\n");
         fclose(arquivoLog); // Fechar após escrever o cabeçalho
     } else {
         // Arquivo existe, verificar a primeira linha
@@ -43,7 +43,7 @@ void garantirDiretorioEArquivo() {
             if (linha[0] != 'T' || linha[1] != 'e' || linha[2] != 'm' || linha[3] != 'p' || linha[4] != 'o') {
                 // Se não for, adicionar o cabeçalho
                 fseek(arquivoLog, 0, SEEK_SET);  // Voltar para o início do arquivo
-                fprintf(arquivoLog, "Programa, Tempo, Comprimento, Threads\n");
+                fprintf(arquivoLog, "Programa,Tempo,Comprimento,Threads\n");
             }
         }
         fclose(arquivoLog); // Fechar o arquivo após verificação
@@ -59,7 +59,7 @@ void registrarTempoNoArquivo(double tempoGasto, int comprimentoA, int numThreads
     }
 
     // Adicionar a linha de log no arquivo Data/conc_minmax.txt
-    fprintf(arquivoLog, "ConcMinMaxSort, %f, %d, %d\n", tempoGasto, comprimentoA, numThreads);
+    fprintf(arquivoLog, "ConcMinMaxSort,%f,%d,%d\n", tempoGasto, comprimentoA, numThreads);
     fclose(arquivoLog);
 }
 

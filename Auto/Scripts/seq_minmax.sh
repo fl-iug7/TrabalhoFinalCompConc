@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Definir cores para melhor visibilidade
+RED="\033[1;31m"
+BLUE="\033[1;34m"
+WHITE="\033[1;37m"
+GREEN="\033[1;32m"
+RESET="\033[0m"
+
+# Banner
+echo -e "${RED}**************************************************"
+echo -e "${RED}-                                                -"
+echo -e "${RED}-              ${BLUE}MinMaxSort Sequencial${RED}             -"
+echo -e "${RED}-                                                -"
+echo -e "${RED}**************************************************${RESET}"
+
 # Descrição:
 # Este script automatiza a execução de programas C no diretório especificado.
 # Para cada programa C encontrado, ele verifica se o programa já foi compilado.
@@ -26,43 +40,44 @@ for programa in "$diretorio_programas"/*.c; do
     # Verificar se o programa já foi compilado (se o arquivo compilado existe)
     if [[ ! -f "$programa_compilado" ]]; then
         # Se o programa não foi compilado, compilar o programa C
-        echo "Compilando o programa $nome_programa..."
+        echo -e "${BLUE}Compilando o programa $nome_programa...${RESET}"
         echo "--------------------------------------------------"
         gcc -o "$programa_compilado" "$programa"
 
         # Verificar se a compilação foi bem-sucedida
         if [[ $? -ne 0 ]]; then
             # Se ocorrer erro na compilação, exibe mensagem e continua com o próximo programa
-            echo "Erro ao compilar $nome_programa"
+            echo -e "${RED}Erro ao compilar $nome_programa${RESET}"
             continue
         fi
     else
         # Perguntar ao usuário se deseja compilar o programa novamente
         while true; do
-            echo "$nome_programa já compilado."
-            read -p "Você deseja compilar novamente? (s/n): " resposta
+            echo -e "${BLUE}$nome_programa já compilado.${RESET}"
+            echo -e "${BLUE}Você deseja compilar novamente? (s/n): ${GREEN}" 
+            read resposta
 
             if [[ "$resposta" == "s" || "$resposta" == "S" ]]; then
                 # Compilar novamente
-                echo "Compilando novamente $nome_programa..."
+                echo -e "${BLUE}Compilando novamente $nome_programa...${RESET}"
                 echo "--------------------------------------------------"
                 gcc -o "$programa_compilado" "$programa"
 
                 # Verificar se a compilação foi bem-sucedida
                 if [[ $? -ne 0 ]]; then
                     # Se ocorrer erro na compilação, exibe mensagem e continua com o próximo programa
-                    echo "Erro ao compilar $nome_programa novamente."
+                    echo -e "${RED}Erro ao compilar $nome_programa novamente.${RESET}"
                     echo "--------------------------------------------------"
                     continue 2
                 fi
                 break
             elif [[ "$resposta" == "n" || "$resposta" == "N" ]]; then
-                echo "$nome_programa será executado sem recompilação."
+                echo -e "${BLUE}$nome_programa será executado sem recompilação.${RESET}"
                 echo "--------------------------------------------------"
                 break
             else
                 # Resposta inválida
-                echo "Resposta inválida. Por favor, digite 's' para sim ou 'n' para não."
+                echo -e "${RED}Resposta inválida. Por favor, digite 's' para sim ou 'n' para não.${RESET}"
                 echo "--------------------------------------------------"
                 continue
             fi
@@ -82,7 +97,7 @@ for programa in "$diretorio_programas"/*.c; do
         arquivo_saida="$diretorio_arquivos/Output/MinMaxSort/Seq/Output$i.bin"
 
         # Exibir mensagem de status para o usuário sobre o que está sendo executado
-        echo "Executando $nome_programa com $arquivo_entrada como entrada e $arquivo_saida como saída."
+        echo -e "${BLUE}Executando $nome_programa com $arquivo_entrada como entrada e $arquivo_saida como saída.${RESET}"
 
         # Executar o programa compilado com os arquivos de entrada e saída como argumentos
         "$programa_compilado" "$arquivo_entrada" "$arquivo_saida"
@@ -91,3 +106,5 @@ for programa in "$diretorio_programas"/*.c; do
         echo "--------------------------------------------------"
     done
 done
+
+echo -e "${RED}**************************************************${RESET}"

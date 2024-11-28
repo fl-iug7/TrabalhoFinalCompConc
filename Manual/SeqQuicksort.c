@@ -107,7 +107,7 @@ void garantirDiretorioEArquivo() {
             exit(1);
         }
         // Adicionar a linha de cabeçalho
-        fprintf(arquivoLog, "Programa, Tempo, Comprimento, Threads\n");
+        fprintf(arquivoLog,  "Programa,Tempo,Comprimento,Threads\n");
         fclose(arquivoLog); // Fechar após escrever o cabeçalho
     } else {
         // Arquivo existe, verificar a primeira linha
@@ -117,7 +117,7 @@ void garantirDiretorioEArquivo() {
             if (linha[0] != 'T' || linha[1] != 'e' || linha[2] != 'm' || linha[3] != 'p' || linha[4] != 'o') {
                 // Se não for, adicionar o cabeçalho
                 fseek(arquivoLog, 0, SEEK_SET);  // Voltar para o início do arquivo
-                fprintf(arquivoLog, "Programa, Tempo, Comprimento, Threads\n");
+                fprintf(arquivoLog,  "Programa,Tempo,Comprimento,Threads\n");
             }
         }
         fclose(arquivoLog); // Fechar o arquivo após verificação
@@ -133,7 +133,7 @@ void registrarTempoNoArquivo(double tempoGasto, int comprimentoA) {
     }
 
     // Adicionar a linha de log no arquivo Data/seq_quicksort.txt
-    fprintf(arquivoLog, "SeqQuicksort, %f, %d, \n", tempoGasto, comprimentoA);
+    fprintf(arquivoLog, "SeqQuicksort,%f,%d,\n", tempoGasto, comprimentoA);
     fclose(arquivoLog);
 }
 
@@ -167,6 +167,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    printf("Tamanho do array: %d\n", comprimentoA);
+
     // Ler o vetor de inteiros do arquivo
     fread(a, sizeof(int), comprimentoA, arquivoEntrada);
     fclose(arquivoEntrada);
@@ -175,17 +177,32 @@ int main(int argc, char *argv[]) {
     double tempoGasto = medirTempoDeOrdenacao(a, comprimentoA);
     printf("Tempo gasto para ordenar: %f segundos\n", tempoGasto);
 
-    // Etapa de validação (opcional)
-    #ifdef VALIDAR_ORDENACAO
-    if (estaOrdenado(a, comprimentoA)) {
-        printf("O vetor está corretamente ordenado.\n");
-    } else {
-        printf("O vetor não está corretamente ordenado.\n");
-    }
-    #endif
+    // // Etapa de validação (opcional)
+    // #ifdef VALIDAR_ORDENACAO
+    // if (estaOrdenado(a, comprimentoA)) {
+    //     printf("O vetor está corretamente ordenado.\n");
+    // } else {
+    //     printf("O vetor não está corretamente ordenado.\n");
+    // }
+    // #endif
 
     // Registrar o tempo no arquivo
     registrarTempoNoArquivo(tempoGasto, comprimentoA);
+
+    // Abrir o arquivo binário de saída para escrever o vetor ordenado
+    const char *arquivoSaidaNome = argv[2];
+    FILE *arquivoSaida = fopen(argv[2], "wb");
+    if (!arquivoSaida) {
+        perror("Erro ao abrir o arquivo de saída");
+        free(a);  // Libera a memória alocada antes de sair
+        return 1;
+    }
+    // Escrever o tamanho do vetor e o vetor ordenado no arquivo de saída
+    fwrite(&comprimentoA, sizeof(int), 1, arquivoSaida);  // Escrever o tamanho do vetor
+    fwrite(a, sizeof(int), comprimentoA, arquivoSaida);  // Escrever o vetor ordenado
+    fclose(arquivoSaida);
+
+    printf("Array ordenado salvo em %s\n", arquivoSaidaNome);
 
     // Liberar a memória alocada para o vetor
     free(a);

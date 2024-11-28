@@ -1,0 +1,10 @@
+Programa, Tempo, Comprimento, Threads
+SeqQuicksort, 45.699376, 1000000000, 
+SeqQuicksort, 4.106202, 100000000, 
+SeqQuicksort, 0.350128, 10000000, 
+SeqQuicksort, 0.000031, 1000, 
+SeqQuicksort, 0.000274, 10000, 
+SeqQuicksort, 0.003108, 100000, 
+SeqQuicksort, 0.031850, 1000000, 
+SeqQuicksort, 0.000000, 10, 
+SeqQuicksort, 0.000004, 100, 

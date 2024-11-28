@@ -64,6 +64,7 @@ int main(int argc, char *argv[]) {
     if (arquivo_existe(arquivo_saida_nome)) {
         char escolha;
         printf("O arquivo %s já existe. Deseja substituí-lo? (s/n): ", arquivo_saida_nome);
+        printf("--------------------------------------------------\n");
         scanf(" %c", &escolha);  // Espaço antes de %c para consumir qualquer caractere de nova linha restante
 
         // Verifica se a escolha é válida
@@ -75,6 +76,7 @@ int main(int argc, char *argv[]) {
         // Se o usuário não quiser substituir, abre o arquivo no modo de anexação
         if (escolha != 's' && escolha != 'S') {
             printf("O programa não irá sobrescrever o arquivo existente. Adicionando dados...\n");
+            printf("--------------------------------------------------\n");
             arquivo_saida = fopen(arquivo_saida_nome, "a");  // Modo de anexação
             if (arquivo_saida == NULL) {
                 perror("Erro ao abrir o arquivo de saída no modo de anexação");
@@ -110,7 +112,7 @@ int main(int argc, char *argv[]) {
 
     // Se o arquivo de saída estiver vazio, escreve o cabeçalho
     if (ftell(arquivo_saida) == 0) {  // Verifica se o arquivo de saída está vazio
-        fprintf(arquivo_saida, "Programa, Tempo, Comprimento, Threads\n");  // Cabeçalho CSV
+        fprintf(arquivo_saida, "Programa,Tempo,Comprimento,Threads\n");  // Cabeçalho CSV
         cabecalho_escrito = 1;
     }
 

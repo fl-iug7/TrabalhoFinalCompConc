@@ -10,100 +10,158 @@
 # 6. Executar o algoritmo ConcMinMaxSort (MinMaxSort concorrente).
 # 7. Validar os resultados de saída gerados pelos algoritmos executados.
 # 8. Gerar um arquivo CSV dos resultados gerados pelos algoritmos executados.
+# 9. Sair do script.
 # Dependendo da escolha, o script chama o script correspondente para executar a tarefa.
 
 # Função para garantir que o script tenha permissão de execução
 dar_permissao_execucao() {
+    BLUE="\033[1;34m"
     if [ ! -x "$1" ]; then
         chmod +x "$1"
-        echo "chmod +x $1"
+        echo -e "${BLUE}chmod +x $1${RESET}"
         echo "--------------------------------------------------"
     fi
 }
 
 # Função para exibir o menu de opções
 exibir_menu() {
-    echo "Por favor, escolha uma opção:"
-    echo "--------------------------------------------------"
-    echo "(1) - Criar 1 Entrada"
-    echo "(2) - Criar 10 Entradas (10^1 - 10^10)"
-    echo "(3) - Executar Quicksort Sequencial"
-    echo "(4) - Executar Quicksort Concorrente"
-    echo "(5) - Executar MinMaxSort Sequencial"
-    echo "(6) - Executar MinMaxSort Concorrente"
-    echo "(7) - Validar Resultados"
-    echo "(8) - Gerar CSV dos Resultados"
-    echo "--------------------------------------------------"
+    # Definir cores para melhor visibilidade
+    RED="\033[1;31m"
+    BLUE="\033[1;34m"
+    WHITE="\033[1;37m"
+    RESET="\033[0m"
+    
+    # Título do menu com formatação
+    echo -e "${RED}=================================================="
+    echo -e "${BLUE}    Trabalho Final de Programação Concorrente"
+    echo -e "${BLUE}           Quicksort x MinMaxSort"
+    echo -e "${RED}==================================================${RESET}"
+    
+    # Exibir as opções com destaque
+    echo -e "${RED}(1)${BLUE} - Criar 1 Entrada"
+    echo -e "${RED}(2)${BLUE} - Criar N Entradas (10^1, 10^2, ..., 10^N)"
+    echo -e "${RED}(3)${BLUE} - Executar Quicksort Sequencial"
+    echo -e "${RED}(4)${BLUE} - Executar Quicksort Concorrente"
+    echo -e "${RED}(5)${BLUE} - Executar MinMaxSort Sequencial"
+    echo -e "${RED}(6)${BLUE} - Executar MinMaxSort Concorrente"
+    echo -e "${RED}(7)${BLUE} - Validar Resultados"
+    echo -e "${RED}(8)${BLUE} - Gerar CSV dos Resultados"
+    echo -e "${RED}(9)${BLUE} - Sair"
+    
+    # Separador final
+    echo -e "${RED}==================================================${RESET}"
+    
+    # Mensagem de instrução
+    echo -e "${BLUE}    Universidade Federal do Rio de Janeiro${RESET}"
+
+    # Separador final
+    echo -e "${RED}==================================================${RESET}"
 }
 
-# Exibe o menu de opções para o usuário
-exibir_menu
 
-# Lê a escolha do usuário
-read -p "Digite sua escolha [1-8]: " escolha
 
-# Trata a escolha do usuário
-case $escolha in
-    1)
-        # Chama o script para criar uma única entrada de dados
-        echo "Criando 1 entrada..."
-        echo "--------------------------------------------------"
-        dar_permissao_execucao ./Scripts/create_input.sh
-        ./Scripts/create_input.sh
-        ;;
-    2)
-        # Chama o script para criar 10 entradas com tamanhos variados (potências de 10)
-        echo "Criando 10 entradas..."
-        echo "--------------------------------------------------"
-        dar_permissao_execucao ./Scripts/create_inputs.sh
-        ./Scripts/create_inputs.sh
-        ;;
-    3)
-        # Chama o script para executar o algoritmo SeqQuicksort (Quicksort sequencial)
-        echo "Executando Quicksort Sequencial..."
-        echo "--------------------------------------------------"
-        dar_permissao_execucao ./Scripts/seq_quicksort.sh
-        ./Scripts/seq_quicksort.sh
-        ;;
-    4)
-        # Chama o script para executar o algoritmo ConcQuicksort (Quicksort concorrente)
-        echo "Executando Quicksort Concorrente..."
-        echo "--------------------------------------------------"
-        dar_permissao_execucao ./Scripts/conc_quicksort.sh
-        ./Scripts/conc_quicksort.sh
-        ;;
-    5)
-        # Chama o script para executar o algoritmo SeqMinMaxSort (MinMaxSort sequencial)
-        echo "Executando MinMaxSort Sequencial..."
-        echo "--------------------------------------------------"
-        dar_permissao_execucao ./Scripts/seq_minmax.sh
-        ./Scripts/seq_minmax.sh
-        ;;
-    6)
-        # Chama o script para executar o algoritmo ConcMinMaxSort (MinMaxSort concorrente)
-        echo "Executando MinMaxSort Concorrente..."
-        echo "--------------------------------------------------"
-        dar_permissao_execucao ./Scripts/conc_minmax.sh
-        ./Scripts/conc_minmax.sh
-        ;;
-    7)
-        # Chama o script para validar os resultados gerados pelos algoritmos
-        echo "Validando os Resultados..."
-        echo "--------------------------------------------------"
-        dar_permissao_execucao ./Scripts/validate_output.sh
-        ./Scripts/validate_output.sh
-        ;;
-    8)
-        # Chama o script para gerar o CSV dos resultados gerados pelos algoritmos
-        echo "Gerando CSV dos Resultados..."
-        echo "--------------------------------------------------"
-        dar_permissao_execucao ./Scripts/generate_csv.sh
-        ./Scripts/generate_csv.sh
-        ;;
-    *)
-        # Caso o usuário escolha uma opção inválida
-        echo "Escolha inválida. Por favor, selecione um número entre 1 e 8."
-        echo "--------------------------------------------------"
-        exit 1
-        ;;
-esac
+# Loop principal
+while true; do
+    # Definir cores para melhor visibilidade
+    RED="\033[1;31m"
+    BLUE="\033[1;34m"
+    WHITE="\033[1;37m"
+    RESET="\033[0m"
+    GREEN="\033[1;32m"
+
+    # Exibe o menu de opções para o usuário
+    exibir_menu
+
+    # Lê a escolha do usuário
+    echo -e "${BLUE}Digite sua escolha [1-9]: ${GREEN}" 
+    read escolha
+    # Separador final
+    echo -e "${RED}==================================================${RESET}"
+
+    # Trata a escolha do usuário
+    case $escolha in
+        1)
+            # Chama o script para criar uma única entrada de dados
+            echo -e "${BLUE}Criando 1 entrada...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            dar_permissao_execucao ./Scripts/create_input.sh
+            echo -e "\n\n"
+            ./Scripts/create_input.sh
+            echo -e "\n\n"
+            ;;
+        2)
+            # Chama o script para criar 10 entradas com tamanhos variados (potências de 10)
+            echo -e "${BLUE}Criando 10 entradas...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            dar_permissao_execucao ./Scripts/create_inputs.sh
+            echo -e "\n\n"
+            ./Scripts/create_inputs.sh
+            echo -e "\n\n"
+            ;;
+        3)
+            # Chama o script para executar o algoritmo SeqQuicksort (Quicksort sequencial)
+            echo -e "${BLUE}Executando Quicksort Sequencial...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            dar_permissao_execucao ./Scripts/seq_quicksort.sh
+            echo -e "\n\n"
+            ./Scripts/seq_quicksort.sh
+            echo -e "\n\n"
+            ;;
+        4)
+            # Chama o script para executar o algoritmo ConcQuicksort (Quicksort concorrente)
+            echo -e "${BLUE}Executando Quicksort Concorrente...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            dar_permissao_execucao ./Scripts/conc_quicksort.sh
+            echo -e "\n\n"
+            ./Scripts/conc_quicksort.sh
+            echo -e "\n\n"
+            ;;
+        5)
+            # Chama o script para executar o algoritmo SeqMinMaxSort (MinMaxSort sequencial)
+            echo -e "${BLUE}Executando MinMaxSort Sequencial...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            dar_permissao_execucao ./Scripts/seq_minmax.sh
+            echo -e "\n\n"
+            ./Scripts/seq_minmax.sh
+            echo -e "\n\n"
+            ;;
+        6)
+            # Chama o script para executar o algoritmo ConcMinMaxSort (MinMaxSort concorrente)
+            echo -e "${BLUE}Executando MinMaxSort Concorrente...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            dar_permissao_execucao ./Scripts/conc_minmax.sh
+            echo -e "\n\n"
+            ./Scripts/conc_minmax.sh
+            echo -e "\n\n"
+            ;;
+        7)
+            # Chama o script para validar os resultados gerados pelos algoritmos
+            echo -e "${BLUE}Validando os Resultados...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            dar_permissao_execucao ./Scripts/validate_output.sh
+            echo -e "\n\n"
+            ./Scripts/validate_output.sh
+            echo -e "\n\n"
+            ;;
+        8)
+            # Chama o script para gerar o CSV dos resultados gerados pelos algoritmos
+            echo -e "${BLUE}Gerando CSV dos Resultados...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            dar_permissao_execucao ./Scripts/generate_csv.sh
+            echo -e "\n\n"
+            ./Scripts/generate_csv.sh
+            echo -e "\n\n"
+            ;;
+        9)
+            # Sair do script
+            echo -e "${BLUE}Saindo do script...${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            exit 0
+            ;;
+        *)
+            # Caso o usuário escolha uma opção inválida
+            echo -e "${BLUE}Escolha inválida. Por favor, selecione um número entre 1 e 9.${RESET}"
+            echo -e "${RED}==================================================${RESET}"
+            ;;
+    esac
+done

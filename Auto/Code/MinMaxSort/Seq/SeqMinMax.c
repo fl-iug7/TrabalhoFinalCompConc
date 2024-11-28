@@ -47,7 +47,7 @@ void garantirDiretorioEArquivo() {
             exit(1);
         }
         // Adicionar a linha de cabeçalho
-        fprintf(arquivoLog, "Programa, Tempo, Comprimento, Threads\n");
+        fprintf(arquivoLog, "Programa,Tempo,Comprimento,Threads\n");
         fclose(arquivoLog); // Fechar após escrever o cabeçalho
     } else {
         // Arquivo existe, verificar a primeira linha
@@ -57,7 +57,7 @@ void garantirDiretorioEArquivo() {
             if (linha[0] != 'T' || linha[1] != 'e' || linha[2] != 'm' || linha[3] != 'p' || linha[4] != 'o') {
                 // Se não for, adicionar o cabeçalho
                 fseek(arquivoLog, 0, SEEK_SET);  // Voltar para o início do arquivo
-                fprintf(arquivoLog, "Programa, Tempo, Comprimento, Threads\n");
+                fprintf(arquivoLog, "Programa,Tempo,Comprimento,Threads\n");
             }
         }
         fclose(arquivoLog); // Fechar o arquivo após verificação
@@ -73,19 +73,19 @@ void registrarTempoNoArquivo(double tempoGasto, int comprimentoA) {
     }
 
     // Adicionar a linha de log no arquivo Data/seq_minmax.txt
-    fprintf(arquivoLog, "SeqMinMaxSort, %f, %d, \n", tempoGasto, comprimentoA);
+    fprintf(arquivoLog, "SeqMinMaxSort,%f,%d,\n", tempoGasto, comprimentoA);
     fclose(arquivoLog);
 }
 
-// Função para verificar se o vetor já está ordenado
-int estaOrdenado(int vetor[], int n) {
-    for (int i = 1; i < n; i++) {
-        if (vetor[i - 1] > vetor[i]) {
-            return 0; // Não está ordenado
-        }
-    }
-    return 1; // Está ordenado
-}
+// // Função para verificar se o vetor já está ordenado
+// int estaOrdenado(int vetor[], int n) {
+//     for (int i = 1; i < n; i++) {
+//         if (vetor[i - 1] > vetor[i]) {
+//             return 0; // Não está ordenado
+//         }
+//     }
+//     return 1; // Está ordenado
+// }
 
 // Algoritmo Min-Max Sort
 void minMaxSort(int vetor[], int n) {
@@ -201,26 +201,25 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Exibir o vetor antes da ordenação (mostra os primeiros e últimos 5 elementos, se houver muitos)
-    printf("\nVetor (antes): [ ");
-    for (int i = 0; i < (n < 10 ? n : 5); i++) {
-        printf("%d ", vetor[i]);
-    }
-    if (n > 10) printf("... ");
-    for (int i = (n > 10 ? n - 5 : 0); i < n; i++) {
-        if (i >= 5) printf("%d ", vetor[i]);
-    }
-    printf("]\n");
+    printf("Tamanho do array: %d\n", n);
+    // // Exibir o vetor antes da ordenação (mostra os primeiros e últimos 5 elementos, se houver muitos)
+    // printf("\nVetor (antes): [ ");
+    // for (int i = 0; i < (n < 10 ? n : 5); i++) {
+    //     printf("%d ", vetor[i]);
+    // }
+    // if (n > 10) printf("... ");
+    // for (int i = (n > 10 ? n - 5 : 0); i < n; i++) {
+    //     if (i >= 5) printf("%d ", vetor[i]);
+    // }
+    // printf("]\n");
 
     // Ordenar o vetor e medir o tempo de execução
     double inicio, fim, tempoExecucao;
 
     OBTER_TEMPO(inicio);
-    if (estaOrdenado(vetor, n)) {
-        printf("O vetor já está ordenado.\n");
-    } else {
-        minMaxSort(vetor, n);
-    }
+
+    minMaxSort(vetor, n);
+
     OBTER_TEMPO(fim);
 
     tempoExecucao = fim - inicio;
