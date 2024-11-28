@@ -1,6 +1,6 @@
 # Execução de Algoritmos Quicksort e MinMaxSort (Manual)
 
-Este diretório contém implementações de algoritmos de ordenação e diversos programas utilitários para trabalhar com arrays e arquivos em C. A seguir, são apresentadas as funcionalidades e usos tanto dos algoritmos de ordenação sequenciais e concorrentes quanto dos utilitários para operações com arquivos binários, como verificação de ordem e combinação de arquivos.
+Este diretório contém implementações de algoritmos de ordenação e diversos programas utilitários para trabalhar com arrays e arquivos em C. A seguir, são apresentadas as funcionalidades e usos tanto dos algoritmos de ordenação sequenciais e concorrentes quanto dos utilitários para operações com arquivos binários, como verificação de ordem e combinação de arquivos.  Por fim, ao final da execução, cada algoritmo gera um arquivo binário correspondente a entrada ordenada.
 
 ---
 
