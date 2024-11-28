@@ -102,19 +102,23 @@ A opção `9` termina o loop do menu e sai do script de forma limpa.
 ## Estrutura do Diretório
 
 ```plaintext
-projeto/
-│
-├── menu.sh               # Script principal do menu interativo
-├── Scripts/              # Diretório contendo os scripts de tarefas individuais
-│   ├── create_input.sh
-│   ├── create_inputs.sh
-│   ├── seq_quicksort.sh
-│   ├── conc_quicksort.sh
-│   ├── seq_minmax.sh
-│   ├── conc_minmax.sh
-│   ├── validate_output.sh
-│   └── generate_csv.sh
-└── Data/                 # Diretório para arquivos e logs gerados
+├── Auto/                             # Diretório para execução automatizada
+    ├── Files/                        # Arquivos de entrada e saída
+    │   ├── Input/                    # Arquivos de entrada
+    │   └── Output/                   # Arquivos de saída
+    ├── Code/                         # Código para automação
+    │   ├── CreatInput/               # Scripts para criar entradas
+    │   ├── GenerateCSV/              # Scripts para gerar arquivos CSV
+    │   ├── MinMaxSort/               # Algoritmos MinMaxSort
+    │   │   ├── Seq/                  # MinMaxSort sequencial
+    │   │   └── Conc/                 # MinMaxSort concorrente
+    │   ├── Quicksort/                # Algoritmos Quicksort
+    │   │   ├── Seq/                  # Quicksort sequencial
+    │   │   └── Conc/                 # Quicksort concorrente
+    │   ├── PrintOutput/              # Scripts para imprimir saída
+    │   └── ValidateOutput/           # Scripts para validação de saída
+    └── run_trab_final.sh             # Script principal com menu interativo
+
 ```
 
 ---
