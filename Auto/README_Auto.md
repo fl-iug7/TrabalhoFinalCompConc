@@ -1,6 +1,6 @@
 # Execução de Algoritmos Quicksort e MinMaxSort (Automático)
 
-Este diretório possui um script (run_trab_final.sh) que fornece um menu interativo para gerenciar e executar várias tarefas, como: uso de algoritmos de ordenação, geração de entradas, validação e agregação de resultados. Além disso, o script possibilita que os usuários interajam de forma simples com outros scripts, garantindo um fluxo de trabalho automatizado. Por fim, ao final da execução, cada algoritmo gera um arquivo binário correspondente a entrada ordenada.
+Este diretório possui um script (`run_trab_final.sh`) que fornece um menu interativo para gerenciar e executar várias tarefas, como: uso de algoritmos de ordenação, geração de entradas, validação e agregação de resultados. Além disso, o script possibilita que os usuários interajam de forma simples com outros scripts, garantindo um fluxo de trabalho automatizado. Por fim, ao final da execução, cada algoritmo gera um arquivo binário correspondente a entrada ordenada.
 
 ---
 
@@ -127,3 +127,4 @@ A opção `9` termina o loop do menu e sai do script de forma limpa.
 
 - Certifique-se de que todos os scripts referenciados no diretório `Scripts` existam e funcionem corretamente.
 - Arquivos de saída e logs são armazenados no diretório `Data`.
+- Por mais que existam versões compiladas dos códigos no diretório `Code`, ainda assim é necessário compilar os arquivos.c na primeira vez que for usá-los por meio do script `run_trab_final.sh`.
