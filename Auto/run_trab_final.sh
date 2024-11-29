@@ -17,7 +17,7 @@
 dar_permissao_execucao() {
     BLUE="\033[1;34m"
     if [ ! -x "$1" ]; then
-        chmod +x "$1"
+        sudo chmod +x "$1"
         echo -e "${BLUE}chmod +x $1${RESET}"
         echo "--------------------------------------------------"
     fi
@@ -84,7 +84,7 @@ while true; do
             # Chama o script para criar uma única entrada de dados
             echo -e "${BLUE}Criando 1 entrada...${RESET}"
             echo -e "${RED}==================================================${RESET}"
-            dar_permissao_execucao ./Scripts/create_input.sh
+            dar_permissao_execucao $(pwd)/Scripts/create_input.sh
             echo -e "\n\n"
             ./Scripts/create_input.sh
             echo -e "\n\n"
@@ -102,7 +102,7 @@ while true; do
             # Chama o script para executar o algoritmo SeqQuicksort (Quicksort sequencial)
             echo -e "${BLUE}Executando Quicksort Sequencial...${RESET}"
             echo -e "${RED}==================================================${RESET}"
-            dar_permissao_execucao ./Scripts/seq_quicksort.sh
+            dar_permissao_execucao $(pwd)/Scripts/seq_quicksort.sh
             echo -e "\n\n"
             ./Scripts/seq_quicksort.sh
             echo -e "\n\n"
@@ -111,7 +111,7 @@ while true; do
             # Chama o script para executar o algoritmo ConcQuicksort (Quicksort concorrente)
             echo -e "${BLUE}Executando Quicksort Concorrente...${RESET}"
             echo -e "${RED}==================================================${RESET}"
-            dar_permissao_execucao ./Scripts/conc_quicksort.sh
+            dar_permissao_execucao $(pwd)/Scripts/conc_quicksort.sh
             echo -e "\n\n"
             ./Scripts/conc_quicksort.sh
             echo -e "\n\n"
@@ -120,7 +120,7 @@ while true; do
             # Chama o script para executar o algoritmo SeqMinMaxSort (MinMaxSort sequencial)
             echo -e "${BLUE}Executando MinMaxSort Sequencial...${RESET}"
             echo -e "${RED}==================================================${RESET}"
-            dar_permissao_execucao ./Scripts/seq_minmax.sh
+            dar_permissao_execucao $(pwd)/Scripts/seq_minmax.sh
             echo -e "\n\n"
             ./Scripts/seq_minmax.sh
             echo -e "\n\n"
@@ -129,7 +129,7 @@ while true; do
             # Chama o script para executar o algoritmo ConcMinMaxSort (MinMaxSort concorrente)
             echo -e "${BLUE}Executando MinMaxSort Concorrente...${RESET}"
             echo -e "${RED}==================================================${RESET}"
-            dar_permissao_execucao ./Scripts/conc_minmax.sh
+            dar_permissao_execucao $(pwd)/Scripts/conc_minmax.sh
             echo -e "\n\n"
             ./Scripts/conc_minmax.sh
             echo -e "\n\n"
@@ -138,7 +138,7 @@ while true; do
             # Chama o script para validar os resultados gerados pelos algoritmos
             echo -e "${BLUE}Validando os Resultados...${RESET}"
             echo -e "${RED}==================================================${RESET}"
-            dar_permissao_execucao ./Scripts/validate_output.sh
+            dar_permissao_execucao $(pwd)/Scripts/validate_output.sh
             echo -e "\n\n"
             ./Scripts/validate_output.sh
             echo -e "\n\n"
@@ -147,7 +147,7 @@ while true; do
             # Chama o script para gerar o CSV dos resultados gerados pelos algoritmos
             echo -e "${BLUE}Gerando CSV dos Resultados...${RESET}"
             echo -e "${RED}==================================================${RESET}"
-            dar_permissao_execucao ./Scripts/generate_csv.sh
+            dar_permissao_execucao $(pwd)/Scripts/generate_csv.sh
             echo -e "\n\n"
             ./Scripts/generate_csv.sh
             echo -e "\n\n"
