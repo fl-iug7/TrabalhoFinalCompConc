@@ -1,6 +1,6 @@
 # Trabalho Final de Computação Concorrente
 
-Este repositório contém a implementação de algoritmos de ordenação **Quicksort** e **MinMaxSort**, tanto em versões sequenciais quanto concorrentes, utilizando a linguagem **C**. O projeto possui duas abordagens para execução dos algoritmos: uma versão automática e uma manual.
+Este repositório contém a implementação de algoritmos de ordenação **Quicksort** e **MinMaxSort**, tanto em versões sequenciais quanto concorrentes, utilizando a linguagem **C**. O projeto possui duas abordagens para execução dos algoritmos: uma versão automática e uma manual. Além disso, cada diretório possui um README com explicações mais detalhadas sobre seu funcionamento.
 
 O diretório é dividido em duas pastas principais:
 
